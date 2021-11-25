@@ -1,5 +1,4 @@
-module git.heroku.com/mytwitheroku.git
-
+module github.com/JhoanVargas/mytwit
 
 go 1.16
 
