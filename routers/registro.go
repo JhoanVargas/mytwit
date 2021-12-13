@@ -19,8 +19,8 @@ func Registro(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "El email de usuario es requerido", 400)
 		return
 	}
-	if len(t.Password) < 2 {
-		http.Error(w, "La contraseña debe tener al menos 2 caracteres", 400)
+	if len(t.Password) < 0 {
+		http.Error(w, "La contraseña debe tener al menos 0 caracteres", 400)
 		return
 	}
 	_, encontrado, _ := bd.ChequeoYaExisteUsuario(t.Email)
