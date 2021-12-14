@@ -2,7 +2,6 @@ package routers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/JhoanVargas/mytwit/bd"
@@ -12,8 +11,6 @@ import (
 func Registro(w http.ResponseWriter, r *http.Request) {
 	var t models.Usuario
 	err := json.NewDecoder(r.Body).Decode(&t)
-	fmt.Println(len(t.Password))
-	fmt.Println(len(t.Email))
 	if err != nil {
 		http.Error(w, "Error en los datos recibidos"+err.Error(), 400)
 		return
@@ -22,8 +19,8 @@ func Registro(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "El email de usuario es requerido", 400)
 		return
 	}
-	if len(t.Password) < 0 {
-		http.Error(w, "La contraseña debe tener al menos 0 caracteres", 400)
+	if len(t.Password) < 6 {
+		http.Error(w, "La contraseña debe tener al menos 6 caracteres", 400)
 		return
 	}
 	_, encontrado, _ := bd.ChequeoYaExisteUsuario(t.Email)
