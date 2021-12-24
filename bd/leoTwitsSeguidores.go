@@ -30,7 +30,7 @@ func LeoTwitsSeguidores(ID string, pagina int) ([]models.DevuelvoTwitsSeguidores
 		}})
 
 	condiciones = append(condiciones, bson.M{"$unwind": "$twit"})
-	condiciones = append(condiciones, bson.M{"$sort": bson.M{"fecha": -1}})
+	condiciones = append(condiciones, bson.M{"$sort": bson.M{"twit.fecha": -1}})
 	condiciones = append(condiciones, bson.M{"$skip": skip})
 	condiciones = append(condiciones, bson.M{"$limit": 20})
 
